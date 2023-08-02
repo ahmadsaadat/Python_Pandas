@@ -2,7 +2,7 @@ import pandas as pd
 import os
 import csv
 
-def build_df(directory):
+def IO_build_df(directory):
     # get a list of all the raw files in input_raw directory
     file_list = os.listdir(directory)
 
@@ -41,6 +41,9 @@ def operation_number_of_distinct_ETFs_per_day_1(df):
     distinct_etf_df = df.groupby(['Day'])
     distinct_etf_df = distinct_etf_df['Composite AxiomaID'].nunique().to_frame()
     distinct_etf_df = distinct_etf_df.reset_index(inplace=False)
+    
+    # beautify return df
+    distinct_etf_df = distinct_etf_df.rename(columns={'Composite AxiomaID': 'Distinct ETFs per Day'})
     return distinct_etf_df
 
 def operation_number_of_constituents_per_ETF_2(df):
@@ -111,15 +114,40 @@ def operation_max_constituent_weight_change_per_ETF_4(df):
     
     #reset and recalibrate indexes
     combined_dfs = combined_dfs.reset_index(inplace=False, drop=True)
+
     
     return combined_dfs
 
+def IO_output_to_csv(directory, df):
+    df.index.name = "Index"
+    df.to_csv(directory, sep='|', encoding='utf-8')
+    
+
 if __name__== "__main__":
-    directory = './data/input_raw/'
-    # get a combined dataframe consisting of day1 and day2 data
-    df = build_df(directory)
-    #1: For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present
-    distinct_ETFs_result = operation_number_of_distinct_ETFs_per_day_1(df)
-    print(distinct_ETFs_result)
+    input_directory = './data/input_raw/'
+    output_directory = './data/output/'
+    
+    # build dataframe consisting of day1 and day2 data
+    build_df = IO_build_df(input_directory)
+    IO_output_to_csv(output_directory+'0_build_df.csv', build_df)
+    
+    # 1: For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present
+    df_1 = operation_number_of_distinct_ETFs_per_day_1(build_df)
+    IO_output_to_csv(output_directory+'1_number_of_distinct_ETFs_per_day.csv', df_1)
+    
+    # 2: For each DAY, for each ETF provide a breakdown of how many constituents are present in each ETF
+    df_2 = operation_number_of_constituents_per_ETF_2(build_df)
+    IO_output_to_csv(output_directory+'2_number_of_constituents_per_ETF_per_Day.csv', df_2)
+    
+    # 3: Between DAY 1 and DAY 2, which constituent has been dropped and which has been added
+    df_3 = operation_dropped_and_added_constituents_per_timeframe_3(build_df)
+    # TODO: in the output you'll see weight, what does this mean?
+    IO_output_to_csv(output_directory+'3_0_dropped_constituents_between_Day1_and_Day2.csv', df_3[0])
+    IO_output_to_csv(output_directory+'3_1_added_constituents_between_Day1_and_Day2.csv', df_3[1])
+    
+    # 4: Max constituent percentage change, per ETF
+    df_4 = operation_max_constituent_weight_change_per_ETF_4(build_df)
+    IO_output_to_csv(output_directory+'4_max_constituent_percentage_change_per_ETF.csv', df_4) 
+    
 
     
