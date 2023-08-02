@@ -25,7 +25,7 @@ def build_df(directory):
             columns_list = extract_columns.split('|')
             
             #skip first two rows
-            file_df = pd.read_csv(directory+file_name, sep='|', skiprows=2)
+            file_df = pd.read_csv(directory+file_name, sep='|', skiprows=2, header=None)
             #drop last row
             file_df = file_df.iloc[:-1]
             #add the appropriate columns
@@ -38,14 +38,22 @@ def build_df(directory):
     
 
 def calculate_distinct_ETFs_1(df):
+# For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present
     distinct_etf_df = df.groupby(['Day'])
     distinct_etf_df = distinct_etf_df['Composite AxiomaID'].nunique().to_frame()
     distinct_etf_df = distinct_etf_df.reset_index(inplace=False)
     return distinct_etf_df
+
+def calculate_groupby_constituents_2(df):
+# For each DAY, for each ETF provide a breakdown of how many constituents are present in each ETF
+    groupby_constituent_df = df.groupby(['Day', 'Composite AxiomaID'])
+    groupby_constituent_df = groupby_constituent_df['Constituent AxiomaID'].size().to_frame()
+    groupby_constituent_df = groupby_constituent_df.reset_index(inplace=False)
+    return groupby_constituent_df
+
     
 
 if __name__== "__main__":
-    
     directory = './data/input_raw/'
     # get a combined dataframe consisting of day1 and day2 data
     df = build_df(directory)
