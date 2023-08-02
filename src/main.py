@@ -2,7 +2,6 @@ import pandas as pd
 import os
 import csv
 
-
 def build_df(directory):
     # get a list of all the raw files in input_raw directory
     file_list = os.listdir(directory)
@@ -37,21 +36,21 @@ def build_df(directory):
     return df
     
 
-def calculate_distinct_ETFs_1(df):
+def operation_number_of_distinct_ETFs_per_day_1(df):
 # For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present
     distinct_etf_df = df.groupby(['Day'])
     distinct_etf_df = distinct_etf_df['Composite AxiomaID'].nunique().to_frame()
     distinct_etf_df = distinct_etf_df.reset_index(inplace=False)
     return distinct_etf_df
 
-def calculate_groupby_constituents_2(df):
+def operation_number_of_constituents_per_ETF_2(df):
 # For each DAY, for each ETF provide a breakdown of how many constituents are present in each ETF
     groupby_constituent_df = df.groupby(['Day', 'Composite AxiomaID'])
     groupby_constituent_df = groupby_constituent_df['Constituent AxiomaID'].size().to_frame()
     groupby_constituent_df = groupby_constituent_df.reset_index(inplace=False)
     return groupby_constituent_df
 
-def calculate_compare_days_difference_3(df):
+def operation_dropped_and_added_constituents_per_timeframe_3(df):
 # Compare DAY1 to DAY2.  For a given ETF, indicate which constituent has dropped from DAY1 to 
 # DAY2, and which constituent has been added from DAY1 to DAY2
 
@@ -85,7 +84,7 @@ def calculate_compare_days_difference_3(df):
     #return a list, the former containing dropped constituents per ETF, and the latter containing added constituents per ETF
     return [dropped_dataframes, added_dataframes]
     
-def calculate_percentage_change_per_constituent_4(df):
+def operation_max_constituent_weight_change_per_ETF_4(df):
     # For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2
 
     day1_dataframe = df[df['Day'] == 1]
@@ -120,7 +119,7 @@ if __name__== "__main__":
     # get a combined dataframe consisting of day1 and day2 data
     df = build_df(directory)
     #1: For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present
-    distinct_ETFs_result = calculate_distinct_ETFs_1(df)
+    distinct_ETFs_result = operation_number_of_distinct_ETFs_per_day_1(df)
     print(distinct_ETFs_result)
 
     

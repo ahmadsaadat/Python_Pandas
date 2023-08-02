@@ -6,10 +6,10 @@ import pandas as pd
 from src import main
 
 
-def test_calculate_distinct_ETFs_1():
+def test_operation_number_of_distinct_ETFs_per_day_1():
     directory = './data/input_raw/'
     build_df = main.build_df(directory)
-    result_df = main.calculate_distinct_ETFs_1(build_df)
+    result_df = main.operation_number_of_distinct_ETFs_per_day_1(build_df)
     
     # check to see if return type of build_df is dataframe
     assert isinstance(build_df, pd.DataFrame)
@@ -27,10 +27,10 @@ def test_calculate_distinct_ETFs_1():
     # check to see if the calculation was correct
     pd.testing.assert_frame_equal(result_df, test_df)
     
-def test_calculate_groupby_constituents_2():
+def test_operation_number_of_constituents_per_ETF_2():
     directory = './data/input_raw/'
     build_df = main.build_df(directory)
-    result_df = main.calculate_groupby_constituents_2(build_df)
+    result_df = main.operation_number_of_constituents_per_ETF_2(build_df)
     
     # check to see if return type of build_df is dataframe
     assert isinstance(build_df, pd.DataFrame)
@@ -55,13 +55,13 @@ def test_calculate_groupby_constituents_2():
     # check to see if the calculation was correct
     pd.testing.assert_frame_equal(result_df, test_df)
     
-def test_calculate_compare_days_difference_3():
+def test_operation_dropped_and_added_constituents_per_timeframe_3():
 # Compare DAY1 to DAY2. For a given ETF, indicate which constituent has dropped from DAY1 to
 # DAY2, and which constituent has been added from DAY1 to DAY2
 
     directory = './data/input_raw/'
     build_df = main.build_df(directory)
-    result_df = main.calculate_compare_days_difference_3(build_df)
+    result_df = main.operation_dropped_and_added_constituents_per_timeframe_3(build_df)
     dropped_df = result_df[0]
     added_df = result_df[1]
     
@@ -102,11 +102,11 @@ def test_calculate_compare_days_difference_3():
     # check to see if the added constituents was correct
     pd.testing.assert_frame_equal(added_df, test_added_df)
 
-def test_calculate_percentage_change_per_constituent_4():
+def test_operation_max_constituent_weight_change_per_ETF_4():
     # For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2
     directory = './data/input_raw/'
     build_df = main.build_df(directory)
-    result_df = main.calculate_percentage_change_per_constituent_4(build_df)
+    result_df = main.operation_max_constituent_weight_change_per_ETF_4(build_df)
     
     test_df = pd.DataFrame(
     [
@@ -130,7 +130,7 @@ def test_calculate_percentage_change_per_constituent_4():
     
     
 if __name__== "__main__":
-    test_calculate_distinct_ETFs_1()
-    test_calculate_groupby_constituents_2()
-    test_calculate_compare_days_difference_3()
-    test_calculate_percentage_change_per_constituent_4()
+    test_operation_number_of_distinct_ETFs_per_day_1()
+    test_operation_number_of_constituents_per_ETF_2()
+    test_operation_dropped_and_added_constituents_per_timeframe_3()
+    test_operation_max_constituent_weight_change_per_ETF_4()
