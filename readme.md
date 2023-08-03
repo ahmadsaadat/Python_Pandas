@@ -16,7 +16,7 @@
 
 # Foreword
 
-**To see the output of this program directly, you can navigate to [src/data/output_files/](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/tree/main/src/data/output_files)**
+**To see the output of this program without having to run the application, you can navigate to [src/data/output_files/](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/tree/main/src/data/output_files)**
 
 - <sub><sup>For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present ➡️ [1_number_of_distinct_ETFs_per_day.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/1_number_of_distinct_ETFs_per_day.csv)</sup></sub>
 - <sub><sup> For each DAY, for each ETF provide a breakdown of how many constituents are present in each ETF ➡️ [2_number_of_constituents_per_ETF_per_Day.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/2_number_of_constituents_per_ETF_per_Day.csv) </sup></sub>
