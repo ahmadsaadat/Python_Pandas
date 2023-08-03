@@ -10,7 +10,7 @@
     a. [High Level](#high-level-🐼) <br>
     b. [Low Level](#low-level-🧪)
 5. [Going Forward](#going-forward-⏩)
-6. [Setting up locally]()
+6. [Setting up locally](#setting-up-locally)
 
 # Foreword
 
