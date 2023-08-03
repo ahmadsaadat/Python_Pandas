@@ -1,8 +1,9 @@
 import pandas as pd
+from pandas import DataFrame
 import os
 import csv
 
-def IO_build_df(directory):
+def IO_build_df(directory: str) -> DataFrame:
     # get a list of all the raw files in input_raw directory
     file_list = os.listdir(directory)
 
@@ -36,7 +37,7 @@ def IO_build_df(directory):
     return df
     
 
-def operation_number_of_distinct_ETFs_per_day_1(df):
+def operation_number_of_distinct_ETFs_per_day_1(df: DataFrame) -> DataFrame:
 # For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present
     distinct_etf_df = df.groupby(['Day'])
     distinct_etf_df = distinct_etf_df['Composite AxiomaID'].nunique().to_frame()
@@ -47,7 +48,7 @@ def operation_number_of_distinct_ETFs_per_day_1(df):
     
     return distinct_etf_df
 
-def operation_number_of_constituents_per_ETF_2(df):
+def operation_number_of_constituents_per_ETF_2(df: DataFrame) -> DataFrame:
 # For each DAY, for each ETF provide a breakdown of how many constituents are present in each ETF
     groupby_constituent_df = df.groupby(['Day', 'Composite AxiomaID'])
     groupby_constituent_df = groupby_constituent_df['Constituent AxiomaID'].size().to_frame()
@@ -58,7 +59,7 @@ def operation_number_of_constituents_per_ETF_2(df):
     
     return groupby_constituent_df
 
-def operation_dropped_and_added_constituents_per_timeframe_3(df):
+def operation_dropped_and_added_constituents_per_timeframe_3(df: DataFrame) -> list[DataFrame]:
 # Compare DAY1 to DAY2.  For a given ETF, indicate which constituent has dropped from DAY1 to 
 # DAY2, and which constituent has been added from DAY1 to DAY2
 
@@ -94,7 +95,7 @@ def operation_dropped_and_added_constituents_per_timeframe_3(df):
     #return a list, the former containing dropped constituents per ETF, and the latter containing added constituents per ETF
     return [dropped_dataframes, added_dataframes]
     
-def operation_max_constituent_weight_change_per_ETF_4(df):
+def operation_max_constituent_weight_change_per_ETF_4(df: DataFrame) -> DataFrame:
     # For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2
 
     day1_dataframe = df[df['Day'] == 1]
@@ -122,14 +123,12 @@ def operation_max_constituent_weight_change_per_ETF_4(df):
     # BUG: attempt to fix bug where rows with percentages of 0.0 are being generated
     combined_dfs = combined_dfs[combined_dfs['pct_change'] > 0]
     
-    print(combined_dfs)
-    
     #reset and recalibrate indexes
     combined_dfs = combined_dfs.reset_index(inplace=False, drop=True)
 
     return combined_dfs
 
-def IO_output_to_csv(directory, df):
+def IO_output_to_csv(directory: str, df: DataFrame) -> None:
     df.index.name = "Index"
     df.to_csv(directory, sep='|', encoding='utf-8')
     
