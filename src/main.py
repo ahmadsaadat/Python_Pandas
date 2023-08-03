@@ -85,6 +85,8 @@ def operation_dropped_and_added_constituents_per_timeframe_3(df: DataFrame) -> l
     right_join_dataframes = pd.merge(day1_dataframe, day2_dataframe, how='right', on=["Constituent AxiomaID"], suffixes=['_day1', '_day2'])
     added_dataframes = right_join_dataframes[(right_join_dataframes['Day_day1'].isnull()) & (right_join_dataframes['Day_day1'].isnull())]
     added_dataframes = added_dataframes.drop(['Day_day1', 'Day_day2'], axis=1)
+    #BUG: found duplicate constituent values in csv, use drop_duplicates
+    added_dataframes = added_dataframes[['Constituent AxiomaID']].drop_duplicates()
     
     #reset indexes
     dropped_dataframes = dropped_dataframes.reset_index(inplace=False, drop=True)
@@ -142,7 +144,7 @@ if __name__== "__main__":
     input_directory = './data/input_files/'
     output_directory = './data/output_files/'
     
-    # build dataframe consisting of concatenated day1 and day2 data
+    # 0: build dataframe consisting of concatenated day1 and day2 data
     build_df = IO_build_df(input_directory)
     IO_output_to_csv(output_directory+'0_build_df.csv', build_df)
     
@@ -156,10 +158,9 @@ if __name__== "__main__":
     
     # 3: Between DAY 1 and DAY 2, which constituent has been dropped and which has been added
     df_3 = operation_dropped_and_added_constituents_per_timeframe_3(build_df)
-    # TODO: in the output you'll see weight, what does this mean?
     IO_output_to_csv(output_directory+'3_0_dropped_constituents_between_Day1_and_Day2.csv', df_3[0])
     IO_output_to_csv(output_directory+'3_1_added_constituents_between_Day1_and_Day2.csv', df_3[1])
-    
+
     # 4: Max constituent percentage change, per ETF
     df_4 = operation_max_constituent_weight_change_per_ETF_4(build_df)
     IO_output_to_csv(output_directory+'4_max_constituent_percentage_change_per_ETF.csv', df_4) 
