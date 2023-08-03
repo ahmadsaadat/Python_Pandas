@@ -130,10 +130,10 @@ def IO_output_to_csv(directory, df):
     
 
 if __name__== "__main__":
-    input_directory = './data/input_raw/'
-    output_directory = './data/output/'
+    input_directory = './data/input_files/'
+    output_directory = './data/output_files/'
     
-    # build dataframe consisting of day1 and day2 data
+    # build dataframe consisting of concatenated day1 and day2 data
     build_df = IO_build_df(input_directory)
     IO_output_to_csv(output_directory+'0_build_df.csv', build_df)
     

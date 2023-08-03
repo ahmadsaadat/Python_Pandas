@@ -7,8 +7,8 @@ from src import main
 
 
 def test_operation_number_of_distinct_ETFs_per_day_1():
-    input_directory = './data/input_raw/'
-    output_directory = './data/output/'
+    input_directory = './data/input_files/'
+    output_directory = './data/output_files/'
     build_df = main.IO_build_df(input_directory)
     result_df = main.operation_number_of_distinct_ETFs_per_day_1(build_df)
     
@@ -35,8 +35,8 @@ def test_operation_number_of_distinct_ETFs_per_day_1():
     
     
 def test_operation_number_of_constituents_per_ETF_2():
-    input_directory = './data/input_raw/'
-    output_directory = './data/output/'
+    input_directory = './data/input_files/'
+    output_directory = './data/output_files/'
     build_df = main.IO_build_df(input_directory)
     result_df = main.operation_number_of_constituents_per_ETF_2(build_df)
     
@@ -68,8 +68,8 @@ def test_operation_number_of_constituents_per_ETF_2():
 
 
 def test_operation_dropped_and_added_constituents_per_timeframe_3():
-    input_directory = './data/input_raw/'
-    output_directory = './data/output/'
+    input_directory = './data/input_files/'
+    output_directory = './data/output_files/'
     build_df = main.IO_build_df(input_directory)
     result_df = main.operation_dropped_and_added_constituents_per_timeframe_3(build_df)
     
@@ -118,8 +118,8 @@ def test_operation_dropped_and_added_constituents_per_timeframe_3():
     
 def test_operation_max_constituent_weight_change_per_ETF_4():
     # For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2
-    input_directory = './data/input_raw/'
-    output_directory = './data/output/'
+    input_directory = './data/input_files/'
+    output_directory = './data/output_files/'
     build_df = main.IO_build_df(input_directory)
     result_df = main.operation_max_constituent_weight_change_per_ETF_4(build_df)
     
