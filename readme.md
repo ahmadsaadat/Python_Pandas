@@ -101,8 +101,10 @@ In order to make this code more **production grade**, it will need:
 - pandas
 - pytest
 
-<br>
 
+### MacOS
+
+<br>
 1. make sure you've installed python3, you can check so by running this command
 ```
 python3 --version
@@ -128,6 +130,31 @@ cd src
 python3 main.py
 ```
 7. navigate to data/output_files/ to see the generated csv files
+```
+cd data/output_files/
+nano 1_number_of_distinct_ETFs_per_day.csv
+```
+
+<br>
+### Windows OS
+1. To follow these instructions please use Git Bash or any Bash shell interface
+2. make sure you've installed python 3.11.4, you can check so by running this command, if not please go to https://www.python.org/downloads/
+```
+python --version
+```
+3. Install dependencies:
+```
+pip install -r requirements.txt
+```
+4. navigate to src folder
+```
+cd src
+```
+5. run the main method, this should generate your output in csv
+```
+python main.py
+```
+6. navigate to data/output_files/ to see the generated csv files
 ```
 cd data/output_files/
 nano 1_number_of_distinct_ETFs_per_day.csv
