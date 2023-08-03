@@ -16,13 +16,9 @@
 **To see the output of this program directly, you can navigate to [src/data/output_files/](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/tree/main/src/data/output_files)**
 
 - For each DAY (DAY1 and DAY2), indicate how many distinct ETFs are present ➡️ [1_number_of_distinct_ETFs_per_day.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/1_number_of_distinct_ETFs_per_day.csv)
- <br>
 - For each DAY, for each ETF provide a breakdown of how many constituents are present in each ETF ➡️ [2_number_of_constituents_per_ETF_per_Day.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/2_number_of_constituents_per_ETF_per_Day.csv)
-<br>
 - Dropped -- Compare DAY1 to DAY2. For a given ETF, indicate which constituent has dropped from DAY1 to DAY2, and which constituent has been added from DAY1 to DAY2 ➡️ [3_0_dropped_constituents_between_Day1_and_Day2.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/3_0_dropped_constituents_between_Day1_and_Day2.csv)
-<br>
 - Added -- Compare DAY1 to DAY2. For a given ETF, indicate which constituent has dropped from DAY1 to DAY2, and which constituent has been added from DAY1 to DAY2 ➡️ [3_1_added_constituents_between_Day1_and_Day2.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/3_1_added_constituents_between_Day1_and_Day2.csv)
-<br>
 - For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2 ➡️ [4_max_constituent_percentage_change_per_ETF.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/4_max_constituent_percentage_change_per_ETF.csv)
 
 
