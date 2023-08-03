@@ -4,6 +4,8 @@ import os
 import csv
 
 def IO_build_df(directory: str) -> DataFrame:
+# build dataframe consisting of concatenated day1 and day2 data
+
     # get a list of all the raw files in input_raw directory
     file_list = os.listdir(directory)
 
@@ -96,7 +98,7 @@ def operation_dropped_and_added_constituents_per_timeframe_3(df: DataFrame) -> l
     return [dropped_dataframes, added_dataframes]
     
 def operation_max_constituent_weight_change_per_ETF_4(df: DataFrame) -> DataFrame:
-    # For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2
+# For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2
 
     day1_dataframe = df[df['Day'] == 1]
     day1_dataframe = day1_dataframe.rename(columns={'Weight' : 'Weight Day1'})
@@ -129,11 +131,14 @@ def operation_max_constituent_weight_change_per_ETF_4(df: DataFrame) -> DataFram
     return combined_dfs
 
 def IO_output_to_csv(directory: str, df: DataFrame) -> None:
+#output the dataframe to the src/data/output_files/ folder
+
     df.index.name = "Index"
     df.to_csv(directory, sep='|', encoding='utf-8')
     
 
 if __name__== "__main__":
+    #set input and output directories
     input_directory = './data/input_files/'
     output_directory = './data/output_files/'
     
