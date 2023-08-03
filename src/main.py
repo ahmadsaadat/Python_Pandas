@@ -119,6 +119,11 @@ def operation_max_constituent_weight_change_per_ETF_4(df):
     max_index_series = combined_dfs.groupby(['Composite AxiomaID'])['pct_change'].idxmax()
     combined_dfs = combined_dfs.loc[max_index_series]
     
+    # BUG: attempt to fix bug where rows with percentages of 0.0 are being generated
+    combined_dfs = combined_dfs[combined_dfs['pct_change'] > 0]
+    
+    print(combined_dfs)
+    
     #reset and recalibrate indexes
     combined_dfs = combined_dfs.reset_index(inplace=False, drop=True)
 
