@@ -4,12 +4,13 @@
 # Table of Contents 📝
 
 1. [Foreword](#foreword)
-1. [Requirements](#requirements)
-2. [Navigating the code base](#navigating-the-code-base)
-3. [Solution](#solution) <br>
-    a. [High Level](#high-level) <br>
-    b. [Low Level](#low-level)
-4. [Going Forward](#going-forward)
+2. [Business requirements](#business-requirements-📋)
+3. [Navigating the code base](#navigating-the-code-base-🖱️)
+4. [Solution](#solution-🔧) <br>
+    a. [High Level](#high-level-🐼) <br>
+    b. [Low Level](#low-level-🧪)
+5. [Going Forward](#going-forward-⏩)
+6. [Setting up locally]()
 
 # Foreword
 
@@ -22,9 +23,9 @@
 - <sub><sup> For each ETF, indicate which constituent’s weight has changed the MOST from DAY1 to DAY2 ➡️ [4_max_constituent_percentage_change_per_ETF.csv](https://github.com/ahmadsaadat/Work_Python_Assessment_Qontigo/blob/main/src/data/output_files/4_max_constituent_percentage_change_per_ETF.csv) </sup></sub>
 
 
-# Requirements 📋
+# Business requirements 📋
 
-You can find the original set of requirements here: [Click Me](https://qontigo-assessment.s3.amazonaws.com/Coding+Exercise.pdf)
+You can find the original set of business requirements here: [Click Me](https://qontigo-assessment.s3.amazonaws.com/Coding+Exercise.pdf)
 
 # Navigating the code base :computer_mouse:
 **src/**: contains the main business logic which aims to solve for the requirements above. <br>
@@ -92,4 +93,42 @@ In order to make this code more **production grade**, it will need:
 - **Higher degree of separation of concern:** As you might see throughout the code, there are instances were hardcoding took place. This is not advisable and must be revised. But in the interest of time, I will leave it this way.
 - **More test cases:** We currently have one set of mock data to test our functions. Ideally they should be multiple to cover all edge cases.
 
-# 
+# Setting up locally
+### Technical Requirements:
+- Python3 (version 3.11.4)
+- pip3
+- virtualenv
+- pandas
+- pytest
+
+<br>
+
+1. make sure you've installed python3, you can check so by running this command
+```
+python3 --version
+```
+2. Create a new virtual environment in the root project directory
+```
+python3 -m venv .venv
+```
+3. Activate the virtual environment
+```
+source .venv/bin/activate
+```
+4. Install dependencies:
+```
+pip3 install -r requirements.txt
+```
+5. navigate to src folder
+```
+cd src
+```
+6. run the main method
+```
+python3 main.py
+```
+7. navigate to data/output_files/ to see the generated csv files
+```
+cd data/output_files/
+nano 1_number_of_distinct_ETFs_per_day.csv
+```
