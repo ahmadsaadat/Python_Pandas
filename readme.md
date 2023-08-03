@@ -101,10 +101,9 @@ In order to make this code more **production grade**, it will need:
 - pandas
 - pytest
 
+<br>
 
 ### MacOS
-
-<br>
 1. make sure you've installed python3, you can check so by running this command
 ```
 python3 --version
@@ -136,6 +135,7 @@ nano 1_number_of_distinct_ETFs_per_day.csv
 ```
 
 <br>
+
 ### Windows OS
 1. To follow these instructions please use Git Bash or any Bash shell interface
 2. make sure you've installed python 3.11.4, you can check so by running this command, if not please go to https://www.python.org/downloads/
