@@ -1,6 +1,6 @@
 ### Author: Ahmad Saadat
 # Table of Contents 📝
-jsdbkhbsu
+
 1. [Foreword](#foreword)
 2. [Business requirements](#business-requirements-📋)
 3. [Navigating the code base](#navigating-the-code-base-🖱️)
